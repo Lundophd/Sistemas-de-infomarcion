@@ -33,7 +33,7 @@ class Libro(models.Model):
     id_libro = models.AutoField(primary_key=True, editable=False,db_column='T003IdLibro')
     titulo = models.CharField(max_length=100, db_column='T003Titulo')
     resumen = models.TextField(max_length=300, db_column='T003Resumen')
-    ISBN = models.CharField(max_length= 100,db_column='T003ISBN')
+    isbm = models.TextField(max_length= 100,db_column='T003Isbn')
     publicacion = models.DateField(db_column='T003Publicacion')
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE,related_name='libros', db_column='T003IdAutor')
     editorial = models.ForeignKey(Editorial, on_delete=models.CASCADE, related_name='libros',db_column='T003IdEditorial')
@@ -65,14 +65,14 @@ class Miembro(models.Model):
 class Prestamo(models.Model):
     id_prestamo = models.AutoField(primary_key=True, editable=False,db_column='T005Prestamo')
     fecha_prestamo = models.DateField(db_column='T005FechaPrestamo')
-    fecha_devolucion = models.TextField(max_length=300, db_column='T003Resumen')
-    autor = models.ForeignKey(Autor, on_delete=models.CASCADE,related_name='libros', db_column='T003IdAutor')
-    editorial = models.ForeignKey(Editorial, on_delete=models.CASCADE, related_name='libros',db_column='T003IdEditorial')
+    fecha_devolucion = models.DateField(db_column='T005FechaDevolucion')
+    libro = models.ForeignKey(Libro, on_delete=models.CASCADE,related_name='prestamos', db_column='T005IdLibro')
+    miembro = models.ForeignKey(Miembro, on_delete=models.CASCADE, related_name='prestamos',db_column='T005IdMiembro')
 
     def _str_(self):
         return self.titulo
 
     class Meta:
-        db_table = 'T003Libro'
-        verbose_name = 'Libro'
-        verbose_name_plural='Libros'
+        db_table = 'T005Prestamo'
+        verbose_name = 'prestamo'
+        verbose_name_plural='prestamos'

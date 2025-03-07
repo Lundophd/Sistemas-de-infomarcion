@@ -1,12 +1,27 @@
 from rest_framework import serializers
-from .models import Persona, Tarea
+from .models import Autor, Editorial, Libro,Miembro,Prestamo
 
-class PersonaSerializer(serializers.ModelSerializer):
+class AutorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Persona
+        model = Autor
         fields = '__all__'
     
-class TareaSerializer(serializers.ModelSerializer):
+class EditorialSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tarea
+        model = Editorial
+        fields = '__all__'
+
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = '__all__'
+
+class MiembroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Miembro
+        fields = '__all__'
+
+class PrestamoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prestamo
         fields = '__all__'
