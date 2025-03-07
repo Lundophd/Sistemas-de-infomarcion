@@ -32,8 +32,8 @@ class Editorial(models.Model):
 class Libro(models.Model):
     id_libro = models.AutoField(primary_key=True, editable=False,db_column='T003IdLibro')
     titulo = models.CharField(max_length=100, db_column='T003Titulo')
-    resumen = models.TextField(max_length=300, db_column='T003Resumen')
-    isbm = models.CharField(max_length= 13,db_column='T003Isbn', unique=True)
+    resumen = models.TextField( db_column='T003Resumen')
+    isbm = models.CharField(max_length= 20,db_column='T003Isbn', unique=True)
     publicacion = models.DateField(db_column='T003Publicacion')
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE,related_name='libros', db_column='T003IdAutor')
     editorial = models.ForeignKey(Editorial, on_delete=models.CASCADE, related_name='libros',db_column='T003IdEditorial')
