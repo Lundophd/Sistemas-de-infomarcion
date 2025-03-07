@@ -59,9 +59,9 @@ class LibroListCreate(generics.ListCreateAPIView):
         editorial = self.request.query_params.get('editorial')
 
         if autor:
-            queryset = queryset.filter(autor__id=autor)
+            queryset = queryset.filter(autor_id=autor)
         if editorial:
-            queryset = queryset.filter(editorial__id=editorial)
+            queryset = queryset.filter(editorial_id=editorial)
 
         if not queryset.exists():
             raise NotFound('No se encontraron libros')
@@ -118,7 +118,7 @@ class PrestamoListCreate(generics.ListCreateAPIView):
         miembro = self.request.query_params.get('miembro')
         fecha_prestamo = self.request.query_params.get('fecha_prestamo')
         if miembro:
-            queryset = queryset.filter(miembro__id=miembro)
+            queryset = queryset.filter(miembro_id=miembro)
         if fecha_prestamo:
             queryset = queryset.filter(fecha_prestamo=fecha_prestamo)
         prestamos = Prestamo.objects.all()
